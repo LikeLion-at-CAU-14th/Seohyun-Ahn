@@ -1,33 +1,142 @@
-body {
-  background-color: pink;
-}
-header {
-  background-color: gold;
-  color: #ffffff;
-  padding: 20px;
-  margin: 50px;
-  text-align: center;
-  border: 5px solid #000000;
-  border-radius: 20px;
+.gallery {
+  padding: 50px;
 }
 
-main{
+.row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+
+  justify-content: center;
+}
+
+
+.card {
+  width: 200px;
+  height: 150px;
+  background: white;
+  border-radius: 12px;
+
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+}
+
+
+.big {
+  width: 500px;
+  height: 400px;
+}
+
+.tall {
+  height: 250px;
+}
+
+.wide {
+  width: 350px;
+}
+
+
+
+body {
+  background-color: #f5f5f5;
+}
+
+
+
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.name {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.korean {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+
+
+.card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  
-
 }
 
-footer {
-  background-color: aquamarine;
-  font-size: 50px;
-  color: white;
-  font-style: italic;
 
+
+p {
+  margin: 10px 0;
 }
 
-.image img{
-  width: 300px;
-  border-radius: 50%;
+
+.card, .card.tall, .card.wide {
+  position: relative;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+
+.card:hover {
+  box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
+}
+
+
+
+.modal:target {
+  display: block;
+}
+
+.modal {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: white;
+  width: 400px;
+  padding: 30px;
+  border-radius: 16px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+}
+
+
+
+.modal-content img {
+  width: 48%;
+  margin: 1%;
+}
+
+
+.card:not(.big) {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.card {
+  text-decoration: none; 
+  color: inherit; 
 }
