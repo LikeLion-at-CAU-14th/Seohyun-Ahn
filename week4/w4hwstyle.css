@@ -1,5 +1,5 @@
 .paper{ /*앞에 .을 안붙이면 클래스 선택자가 아닌 태그선택자로 작용해 오류 유발*/
-  box-shadow: 0 4px 10px #FF771040; /*hex 알파값은 00 ~ FF (0~255), 25% → 255 × 0.25 ≈ 64, 64를 16진수로 → 40*/
+  box-shadow: 7px 7px 39px 0 #FF771040; /*hex 알파값은 00 ~ FF (0~255), 25% → 255 × 0.25 ≈ 64, 64를 16진수로 → 40*/
   border: 1px solid #FF7710; /*1px로 하는법 몰라서 검색->두 값을 한번에 할 수 있음 배움*/
   border-radius: 10px;
   
@@ -8,8 +8,8 @@
   
   display: flex;
   justify-content: center;
-  margin-top: 60px;      
-  margin-bottom: 60px;  
+  margin: 60px;      
+   
 
   background: #ffffff;
 }

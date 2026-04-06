@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*여기까지 해도 적용안되는 이유-css파일을 html에 연결 안함*/
+}
+/*height를 늘려 스크롤 확인가능, navbar는고정*/
+
+/*개발자창에서 오른쪽 위 점3개 console, source, network*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+
+body{
+  margin-top: 80px;
+}
