@@ -1,4 +1,5 @@
 import Todo from "../DOM/Todo.js";
+import CompleteController from "./completeController.js";
 
 class TodoController{
   constructor(todo){
@@ -34,8 +35,16 @@ class TodoController{
     if(this.comBtnNode.innerText === "미완") {
       this.comBtnNode.innerText = "완료";
     } else{
-      this.comBtnNode,innerText = "미완";
+      this.comBtnNode.innerText = "미완";
     }
+
+    const todoText = this.innerNode.innerText; //텍스트 가져오기
+
+    this.delTodo(); //기존 todo 리스트에서 삭제
+
+    const completeController = new CompleteController(todoText); //omplete 리스트로 이동
+    
+    completeController.addCompleteTodo();
   }
 }
 
