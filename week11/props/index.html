@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Props</title>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> <!-- 리액트 CDN 다운 -> 노션페이지 링크 들어가서 복붙-->
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  
+  <script type="text/babel" src="./button.js"></script> <!--불러오기-->
+  <script type="text/babel" src="./input.js"></script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!--바벨 다운 복붙-->
+
+  <script type="text/babel">
+    const 정건 = ReactDOM.createRoot(document.getElementById('root')) //정건은 변수명
+    정건.render(
+      <>
+      <재사용버튼 라벨="등록하기" 배경색="red" />
+      <재사용버튼 라벨="삭제하기" 배경색="blue" />
+      <재사용버튼 라벨="수정하기" 배경색="green" />
+
+      <프로필카드 이름="정건" 나이="26세" 역할="프론트엔드" />
+      </> //최종하나의 부모로 감싸야 함->시맨틱태그나 div 사용
+    ) // JSX에서 return (<>hi world</>) 랑 같음, 정건.render(<div>hi world</div>)이렇게 썼더니 연산자로 인식해 오류남-> 바벨 다운로드 필요, 바벨 사이트에 나온 스크립트 타입 복붙 적기
+  </script> <!--스크립트 태그 안에는 자바스크립트 언어 사용-->
+</head>
+<body>
+  <div id="root"></div> <!--최종 껍질만 적음-->
+</body>
+</html>
