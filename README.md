@@ -4,8 +4,6 @@
 
 majoring in Early Childhood Education at Chung-Ang University (Class of 2024) 👶🎓  
 
-double major in Nano Technology (School of Integrative Engineering) 🔬🎓
-
 Chung-Ang University LikeLion 14th 🦁
 
 from Suwon, South Korea 📍
