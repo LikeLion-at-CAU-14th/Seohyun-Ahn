@@ -1,4 +1,4 @@
-
+import { generateContent } from "./api/gemini";
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
@@ -38,91 +38,25 @@ function App() {
   const sendMessage = async (messageText = input) => {
     if (!messageText.trim() || loading) return;
 
-    const userMessage = messageText.trim();
+    const userMessage = {
+      role: "user",
+      text: messageText.trim(),
+      time: new Date(),
+    };
 
-    // 사용자 메시지 추가
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "user",
-        text: userMessage,
-        time: new Date(),
-      },
-    ]);
-
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
     try {
-      // 1. Gemini API Key 가져오기
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      // 이전 대화 + 방금 보낸 메시지를 함께 전달 (맥락 유지)
+      const aiText = await generateContent([...messages, userMessage]);
 
-      // 2. 사용할 Gemini AI 모델 지정
-      const model = "gemini-3.6-flash";
-
-      if (!apiKey) {
-        throw new Error(
-          "API Key를 찾을 수 없습니다. .env 파일을 확인해주세요."
-        );
-      }
-
-      // 3. API 요청 URL 생성
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-
-      console.log("REQUEST MODEL:", model);
-
-      // 4. Gemini API 호출
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [
-                {
-                  text: userMessage,
-                },
-              ],
-            },
-          ],
-        }),
-      });
-
-      // 5. API 응답 JSON 변환
-      const data = await response.json();
-
-      console.log("HTTP STATUS:", response.status);
-      console.log("Gemini Response:", data);
-
-      // 6. API 오류 처리
-      if (!response.ok) {
-        throw new Error(
-          data?.error?.message ||
-            `Gemini API 요청에 실패했습니다. (${response.status})`
-        );
-      }
-
-      // 7. AI 응답 텍스트 추출
-      const aiText =
-        data?.candidates?.[0]?.content?.parts
-          ?.map((part) => part.text)
-          .filter(Boolean)
-          .join("\n") || "API 응답이 없습니다.";
-
-      // 8. AI 응답을 메시지 목록에 추가
       setMessages((prev) => [
         ...prev,
-        {
-          role: "assistant",
-          text: aiText,
-          time: new Date(),
-        },
+        { role: "assistant", text: aiText, time: new Date() },
       ]);
     } catch (error) {
-      // API 오류 처리
       console.error("Gemini API Error:", error);
 
       setMessages((prev) => [
@@ -130,10 +64,11 @@ function App() {
         {
           role: "assistant",
           text: `오류가 발생했습니다.\n${error.message}`,
+          time: new Date(),
+          isError: true,
         },
       ]);
     } finally {
-      // 로딩 종료
       setLoading(false);
     }
   };
